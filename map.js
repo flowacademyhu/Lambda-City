@@ -26,7 +26,7 @@ const generateMap = (width, height) => {
     }
     for (let i = 2; i < arr.length - 4; i++) {
         for (let j = 1; j < arr[i].length - 1; j++) {
-            arr[Math.floor(Math.random() * 20) + 2][Math.floor(Math.random() * 24) + 1] = 'B';
+            arr[Math.floor(Math.random() * (arr.length - 4 - 2 + 1)) + 2][Math.floor(Math.random() * (arr[i].length - 1 - 1 + 1)) + 1] = 'B';
         }
     }
     return arr;

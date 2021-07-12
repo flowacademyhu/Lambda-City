@@ -1,32 +1,40 @@
-const table = require('table');
+const emptyField = '';
 
+// játék pályájának generálása
 const generateMap = (width, height) => {
-    const arr = new Array(height);
-    for (let i = 0; i < arr.length; i++){
-        arr[i] = new Array(width);
+  const arr = new Array(height);
+  const PositionEagle = (arr.length - 1) / 2;
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = new Array(width);
+  }
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+      arr[i][j] = emptyField;
+      arr[0][j] = 'F';
+      arr[arr.length - 1][j] = 'F';
+      arr[i][0] = 'F';
+      arr[i][arr.length - 1] = 'F';
+      arr[arr.length - 2][PositionEagle] = 'E';
+      arr[arr.length - 2][PositionEagle - 1] = 'B';
+      arr[arr.length - 2][PositionEagle + 1] = 'B';
+      arr[arr.length - 3][PositionEagle - 1] = 'B';
+      arr[arr.length - 3][PositionEagle + 1] = 'B';
+      arr[arr.length - 3][PositionEagle] = 'B';
     }
-    return arr;
+  }
+  for (let i = 2; i < arr.length - 3; i++) {
+    for (let j = 1; j < arr[i].length - 1; j++) {
+      if (i % 6 !== 0 && j % 2 === 0) {
+        arr[i][j] = 'B';
+      } else if (i === (arr.length - 1) / 2 && j % 11 === 1) {
+        arr[i][j] = 'U';
+      }
+    }
+  }
+  return arr;
 };
 
-const fillMap = (arr) => {
-    for (let i = 0; i < arr.length; i++){
-        for (let j = 0; j < arr[i].length; j++){
-            arr[i][j] = '';
-            arr[0][j] = 'F';
-            arr[i][0] = 'F';
-            arr[arr.length - 1][j] = 'F';
-            arr[i][arr[i].length - 1] = 'F';
-        }
-    }
-    arr[23][12] = 'E';
-    arr[23][11] = 'B';
-    arr[23][13] = 'B';
-    arr[22][11] = 'B';
-    arr[22][12] = 'B';
-    arr[22][13] = 'B';
-
-
-    return arr;
+module.exports = {
+  emptyField,
+  generateMap
 };
-
-console.log(table.table(fillMap(generateMap(25, 25))));

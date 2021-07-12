@@ -1,16 +1,14 @@
 const map = require('./map').generateMap(15, 15);
-const playerInput = require('./player').playerInput;
-const printMap = require('./player').printMap;
-const enemy1 = require('./enemy').enemy1;
-const enemySpawn = require('./enemy').enemySpawn;
+const { printMap, playerInput } = require('./player');
+const { spawnAllEnemies, enemies } = require('./enemy');
 const enemyMotion = require('./enemy').enemyMotion;
 
 // játék futtatásához szükséges függvény
 const main = () => {
   playerInput(map);
-  enemySpawn(map);
+  spawnAllEnemies(map, printMap);
   setInterval(() => {
-    if (enemy1.status === 'spawned') {
+    if (enemies.every((enemy) => enemy.status === 'spawned')) {
       enemyMotion(map);
       printMap(map);
     }

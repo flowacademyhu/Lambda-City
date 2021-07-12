@@ -1,33 +1,34 @@
 const emptyField = '';
 
-// játék pályájának generálása
+// játéktér generálása
 const generateMap = (width, height) => {
+  console.clear();
   const arr = new Array(height);
-  const PositionEagle = (arr.length - 1) / 2;
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = new Array(width);
+  const PosEagle = (arr.length - 1) / 2;
+  for (let posX = 0; posX < arr.length; posX++) {
+    arr[posX] = new Array(width);
   }
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr[i].length; j++) {
-      arr[i][j] = emptyField;
-      arr[0][j] = 'F';
-      arr[arr.length - 1][j] = 'F';
-      arr[i][0] = 'F';
-      arr[i][arr.length - 1] = 'F';
-      arr[arr.length - 2][PositionEagle] = 'E';
-      arr[arr.length - 2][PositionEagle - 1] = 'B';
-      arr[arr.length - 2][PositionEagle + 1] = 'B';
-      arr[arr.length - 3][PositionEagle - 1] = 'B';
-      arr[arr.length - 3][PositionEagle + 1] = 'B';
-      arr[arr.length - 3][PositionEagle] = 'B';
+  for (let posX = 0; posX < arr.length; posX++) {
+    for (let posY = 0; posY < arr[posX].length; posY++) {
+      arr[posX][posY] = emptyField;
+      arr[0][posY] = 'F';
+      arr[arr.length - 1][posY] = 'F';
+      arr[posX][0] = 'F';
+      arr[posX][arr.length - 1] = 'F';
+      arr[arr.length - 2][PosEagle] = 'E';
+      arr[arr.length - 2][PosEagle - 1] = 'B';
+      arr[arr.length - 2][PosEagle + 1] = 'B';
+      arr[arr.length - 3][PosEagle - 1] = 'B';
+      arr[arr.length - 3][PosEagle + 1] = 'B';
+      arr[arr.length - 3][PosEagle] = 'B';
     }
   }
-  for (let i = 2; i < arr.length - 3; i++) {
-    for (let j = 1; j < arr[i].length - 1; j++) {
-      if (i % 6 !== 0 && j % 2 === 0) {
-        arr[i][j] = 'B';
-      } else if (i === (arr.length - 1) / 2 && j % 11 === 1) {
-        arr[i][j] = 'U';
+  for (let posX = 2; posX < arr.length - 3; posX++) {
+    for (let posY = 1; posY < arr[posX].length - 1; posY++) {
+      if (posX % 6 !== 0 && posY % 2 === 0) {
+        arr[posX][posY] = 'B';
+      } else if (posX === (arr.length - 1) / 2 && posY % 11 === 1) {
+        arr[posX][posY] = 'U';
       }
     }
   }

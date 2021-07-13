@@ -9,6 +9,8 @@ const printMap = (map) => {
   console.log(table(map));
 };
 
+let trigger = false;
+
 const player = {
   tank: '^',
   life: 3,
@@ -47,8 +49,12 @@ const playerInput = (arr, enemies) => {
       arr[player.posX][player.posY] = player.tank;
       printMap(arr);
     } else if (key === ' ') {
-      fireBullet(arr, printMap, emptyField, player, enemies);
-      printMap(arr);
+      if (trigger === false) {
+        fireBullet(arr, printMap, emptyField, player, enemies);
+        trigger = true;
+        setTimeout(() => (trigger = false), 2000);
+        printMap(arr);
+      }
     } else if (key === 'h') {
       process.exit();
     } else if (key === 'q') {

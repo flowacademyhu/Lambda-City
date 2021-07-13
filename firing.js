@@ -22,6 +22,7 @@ const fireBullet = (arr, printMap, emptyField, player, enemies) => {
           arr[posX + 1][bulletout.posY] = emptyField;
         }
       } else if (arr[posX][bulletout.posY] !== emptyField) {
+        arr[posX][bulletout.posY] = emptyField;
         arr[posX + 1][bulletout.posY] = emptyField;
         for (const enemy of enemies) {
           if (arr[posX][bulletout.posY] === arr[enemy.posX][enemy.posY]) {
@@ -33,6 +34,7 @@ const fireBullet = (arr, printMap, emptyField, player, enemies) => {
             return arr;
           }
         }
+        clearInterval(interval);
       }
       printMap(arr);
       posX--;
@@ -53,6 +55,7 @@ const fireBullet = (arr, printMap, emptyField, player, enemies) => {
           arr[posX - 1][bulletout.posY] = emptyField;
         }
       } else if (arr[posX][bulletout.posY] !== emptyField) {
+        arr[posX][bulletout.posY] = emptyField;
         arr[posX - 1][bulletout.posY] = emptyField;
         for (const enemy of enemies) {
           if (arr[posX][bulletout.posY] === arr[enemy.posX][enemy.posY]) {
@@ -64,6 +67,7 @@ const fireBullet = (arr, printMap, emptyField, player, enemies) => {
             return arr;
           }
         }
+        clearInterval(interval);
       }
       printMap(arr);
       posX++;
@@ -84,6 +88,7 @@ const fireBullet = (arr, printMap, emptyField, player, enemies) => {
           arr[bulletout.posX][posY + 1] = emptyField;
         }
       } else if (arr[bulletout.posX][posY] !== emptyField) {
+        arr[bulletout.posX][posY] = emptyField;
         arr[bulletout.posX][posY + 1] = emptyField;
         for (const enemy of enemies) {
           if (arr[bulletout.posX][posY] === arr[enemy.posX][enemy.posY]) {
@@ -95,7 +100,9 @@ const fireBullet = (arr, printMap, emptyField, player, enemies) => {
             return arr;
           }
         }
+        clearInterval(interval);
       }
+      printMap(arr);
       posY--;
     }, 120);
   }
@@ -114,6 +121,7 @@ const fireBullet = (arr, printMap, emptyField, player, enemies) => {
           arr[bulletout.posX][posY - 1] = emptyField;
         }
       } else if (arr[bulletout.posX][posY] !== emptyField) {
+        arr[bulletout.posX][posY] = emptyField;
         arr[bulletout.posX][posY - 1] = emptyField;
         for (const enemy of enemies) {
           if (arr[bulletout.posX][posY] === arr[enemy.posX][enemy.posY]) {
@@ -125,6 +133,7 @@ const fireBullet = (arr, printMap, emptyField, player, enemies) => {
             return arr;
           }
         }
+        clearInterval(interval);
       }
       printMap(arr);
       posY++;

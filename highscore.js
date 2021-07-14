@@ -20,7 +20,7 @@ for (let i = array.length - 1; i >= 0; i--) {
   tomb.push(array[i]);
 }
 // SCOREBOARD KIÍRÁS
-console.log(tomb.slice(0, 5));
+console.log(tomb.slice(0, 5).join('\r\n'));
 
 module.exports = {
   highscore

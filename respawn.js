@@ -1,48 +1,48 @@
 // Sas eltűnésekor game over!!! || PositionEagle === emptyField
-const gotHit = (arr) => {
+const gotHit = (arr, player) => {
   if (arr[player.posX - 1][player.posY] === enemyBullet) {
     arr[player.posX][player.posY] = emptyField;
-    if (playerLife === 1) {
+    if (player.life === 1) {
       console.log('Game Over!');
       process.exit();
     }
     player.posX = player.spawnPointX;
     player.posY = player.spawnPointY;
-    playerLife -= 1;
+    player.life -= 1;
   }
   if (arr[player.posX + 1][player.posY] === enemyBullet) {
     arr[player.posX][player.posY] = emptyField;
-    if (playerLife === 1) {
+    if (player.life === 1) {
       console.log('Game Over!');
       process.exit();
     }
     player.posX = player.spawnPointX;
     player.posY = player.spawnPointY;
-    playerLife -= 1;
+    player.life -= 1;
   }
   if (arr[player.posX][player.posY - 1] === enemyBullet) {
     arr[player.posX][player.posY] = emptyField;
-    if (playerLife === 1) {
+    if (player.life === 1) {
       console.log('Game Over!');
       process.exit();
     }
     player.posX = player.spawnPointX;
     player.posY = player.spawnPointY;
-    playerLife -= 1;
+    player.life -= 1;
   }
   if (arr[player.posX][player.posY + 1] === enemyBullet) {
     arr[player.posX][player.posY] = emptyField;
-    if (playerLife === 1) {
+    if (player.life === 1) {
       console.log('Game Over!');
       process.exit();
     }
     player.posX = player.spawnPointX;
     player.posY = player.spawnPointY;
-    playerLife -= 1;
+    player.life -= 1;
   }
 };
 // powerup enemy kill!!!
-const powUp = (arr) => {
+const powUp = (arr, player) => {
   if (arr[player.posX][player.posY] === powerUp) {
     const randomNum = Math.floor(Math.random() * 10);
     if (randomNum <= 7) {

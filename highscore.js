@@ -15,9 +15,20 @@ const highscore = (name, points) => {
 highscore(word, points);
 
 // scoreboard kiírása!
+const obj = [];
 fs.readFile('message.txt', 'utf-8', function (err, data) {
   if (err) {
     return console.log(err);
   }
-  console.log(data);
+  obj.push(data);
 });
+
+const result = Object.keys(obj)
+  .slice(0, 6)
+  .map((key) => ({ [key]: obj[key] }));
+
+console.log(result);
+
+module.exports = {
+  highscore
+};

@@ -1,25 +1,41 @@
-// Sas eltűnésekor game over!!! || PositionEagle === emptyField,,,,, enemyBullet???
+// Sas eltűnésekor game over!!! || PositionEagle === emptyField
 const gotHit = (arr, player) => {
   if (arr[player.posX - 1][player.posY] === enemyBullet) {
     arr[player.posX][player.posY] = emptyField;
+    if (player.life === 1) {
+      console.log('Game Over!');
+      process.exit();
+    }
     player.posX = player.spawnPointX;
     player.posY = player.spawnPointY;
     player.life -= 1;
   }
   if (arr[player.posX + 1][player.posY] === enemyBullet) {
     arr[player.posX][player.posY] = emptyField;
+    if (player.life === 1) {
+      console.log('Game Over!');
+      process.exit();
+    }
     player.posX = player.spawnPointX;
     player.posY = player.spawnPointY;
     player.life -= 1;
   }
   if (arr[player.posX][player.posY - 1] === enemyBullet) {
     arr[player.posX][player.posY] = emptyField;
+    if (player.life === 1) {
+      console.log('Game Over!');
+      process.exit();
+    }
     player.posX = player.spawnPointX;
     player.posY = player.spawnPointY;
     player.life -= 1;
   }
   if (arr[player.posX][player.posY + 1] === enemyBullet) {
     arr[player.posX][player.posY] = emptyField;
+    if (player.life === 1) {
+      console.log('Game Over!');
+      process.exit();
+    }
     player.posX = player.spawnPointX;
     player.posY = player.spawnPointY;
     player.life -= 1;
@@ -40,21 +56,9 @@ const powUp = (arr, player) => {
   return arr;
 };
 
-const gameOver = () => {
-  if (player.life === 1 || arr[arr.length - 2][PosEagle] == emptyField){
-    console.log('Játék vége! Játék alatt kilőttél xy mennyiségű tankot!'); // kilőtt tankok mennyisége tárolva!!!
-    process.exit();
-  }else if (/*kilőttél x mennyiségú tankot*/){
-    console.log('Gratulálunk Bajnok, nyertél!')
-    process.exit();
-  }
-};
-
 module.exports = {
   gotHit,
-  powUp,
-  gameOver,
-
+  powUp
 };
 
 // const moveDown = (arr) => {

@@ -22,7 +22,7 @@ const player = {
 };
 
 // játékos input beolvasása
-const playerInput = (arr, enemies) => {
+const playerInput = (arr) => {
   arr[arr.length - 2][(arr.length - 1) / 2 - 2] = player.tank;
   player.posX = player.spawnPointX;
   player.posY = player.spawnPointY;
@@ -50,7 +50,7 @@ const playerInput = (arr, enemies) => {
       printMap(arr);
     } else if (key === ' ') {
       if (trigger === false) {
-        fireBullet(arr, printMap, emptyField, player, enemies);
+        fireBullet(arr, player, printMap, emptyField);
         trigger = true;
         setTimeout(() => (trigger = false), 2000);
         printMap(arr);

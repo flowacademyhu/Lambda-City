@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/flowacademyhu/Lambda-City/issues"
   },
-  "homepage": "https://github.com/flowacademyhu/Lambda-City#readme"
+  "homepage": "https://github.com/flowacademyhu/Lambda-City#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "readline-sync": "^1.4.10"
+  }
 }

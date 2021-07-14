@@ -2,7 +2,7 @@ const emptyField = '';
 
 // játéktér generálása
 const generateMap = (width, height) => {
-  console.clear();
+  // console.clear();
   const arr = new Array(height);
   const PosEagle = (arr.length - 1) / 2;
   for (let posX = 0; posX < arr.length; posX++) {

@@ -1,12 +1,15 @@
 const table = require('table').table;
 const map = require('./map').generateMap(15, 15);
 const emptyField = require('./map').emptyField;
+const fireBullet = require('./firing').fireBullet;
 
 // pálya kirajzoltatása
 const printMap = (map) => {
-  console.clear(map);
+  // console.clear(map);
   console.log(table(map));
 };
+
+let trigger = false;
 
 const player = {
   tank: '^',
@@ -14,11 +17,12 @@ const player = {
   spawnPointX: map.length - 2,
   spawnPointY: (map.length - 1) / 2 - 2,
   posX: 0,
-  posY: 0
+  posY: 0,
+  score: 0
 };
 
 // játékos input beolvasása
-const playerInput = (arr) => {
+const playerInput = (arr, enemies) => {
   arr[arr.length - 2][(arr.length - 1) / 2 - 2] = player.tank;
   player.posX = player.spawnPointX;
   player.posY = player.spawnPointY;
@@ -44,6 +48,13 @@ const playerInput = (arr) => {
       playerMoveRight(arr);
       arr[player.posX][player.posY] = player.tank;
       printMap(arr);
+    } else if (key === ' ') {
+      if (trigger === false) {
+        fireBullet(arr, printMap, emptyField, player, enemies);
+        trigger = true;
+        setTimeout(() => (trigger = false), 2000);
+        printMap(arr);
+      }
     } else if (key === 'h') {
       process.exit();
     } else if (key === 'q') {

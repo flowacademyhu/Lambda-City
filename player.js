@@ -103,6 +103,8 @@ const playerMoveUp = (arr) => {
     player.posX--;
     arr[player.posX + 1][player.posY] = emptyField;
     player.tank = '^';
+  } else {
+    player.tank = '^';
   }
   return arr;
 };
@@ -112,6 +114,8 @@ const playerMoveDown = (arr) => {
   if (arr[player.posX + 1][player.posY] === emptyField) {
     player.posX++;
     arr[player.posX - 1][player.posY] = emptyField;
+    player.tank = 'v';
+  } else {
     player.tank = 'v';
   }
   return arr;
@@ -123,6 +127,8 @@ const playerMoveLeft = (arr) => {
     player.posY--;
     arr[player.posX][player.posY + 1] = emptyField;
     player.tank = '<';
+  } else {
+    player.tank = '<';
   }
   return arr;
 };
@@ -132,6 +138,8 @@ const playerMoveRight = (arr) => {
   if (arr[player.posX][player.posY + 1] === emptyField) {
     player.posY++;
     arr[player.posX][player.posY - 1] = emptyField;
+    player.tank = '>';
+  } else {
     player.tank = '>';
   }
   return arr;

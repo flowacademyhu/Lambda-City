@@ -7,8 +7,17 @@ const points = 69;
 // const point = readLine.question('Mennyi pontod lett?');
 
 // fájlbaírás függvénye!
+
+// fs.readFile("users.txt", (err, file) => {
+//   if(file.length == 0){
+//       console.log("file is empty")
+//   }else{
+//       console.log("file is not empty")
+//   }
+// })
+
 const highscore = (name, points) => {
-  fs.appendFileSync('message.txt', `\n${name}  :  ${points} pont`);
+  fs.appendFileSync('message.txt', `\n${name}  :  ${points} pont `);
 };
 
 // játékos név beírása scoreboardra!
@@ -17,12 +26,12 @@ highscore(word, points);
 // scoreboard kiírása!
 
 const array = fs.readFileSync('message.txt').toString().split('\n');
-
-for (let i = 0; i < array.length; i++) {
-  if (i < 5) {
-    console.log(array[i]);
-  }
+const tomb = [];
+for (let i = array.length - 1; i >= 0; i--) {
+  tomb.push(array[i]);
 }
+
+console.log(tomb.slice(0, 5));
 
 module.exports = {
   highscore

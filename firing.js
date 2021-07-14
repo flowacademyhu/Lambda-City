@@ -1,13 +1,22 @@
+const bulletout = {
+  bullet: '*',
+  posX: 0,
+  posY: 0
+};
+
 const fireBullet = (arr) => {
   bulletout.posX = player.posX;
   bulletout.posY = player.posY;
-  if (player.tank === '^') {
+  if (player.tank == '^') {
     let i = bulletout.posX - 1;
     const interval = setInterval(() => {
       if (arr[i][bulletout.posY] === 'F') {
         printMap(arr);
-
-        return (arr[i + 1][bulletout.posY] = emptyField);
+        if (arr[i + 1][bulletout.posY] !== player.tank) {
+          return (arr[i + 1][bulletout.posY] = emptyField);
+        } else {
+          return;
+        }
       }
       if (arr[i][bulletout.posY] === emptyField) {
         arr[i][bulletout.posY] = bulletout.bullet;
@@ -20,8 +29,11 @@ const fireBullet = (arr) => {
         }
       } else if (arr[i][bulletout.posY] !== emptyField) {
         //arr[i][bulletout.posY] = 'c';
-        arr[i + 1][bulletout.posY] = emptyField;
-        arr[i][bulletout.posY] = 'c';
+        arr[i][bulletout.posY] = emptyField;
+
+        if (arr[i + 1][bulletout.posY] !== player.tank) {
+          arr[i + 1][bulletout.posY] = emptyField;
+        }
         clearInterval(interval);
         printMap(arr);
         return;
@@ -32,14 +44,19 @@ const fireBullet = (arr) => {
         return;
       }
       i--;
-    }, 120);
+    }, 60);
   }
-  if (player.tank === 'v') {
+  if (player.tank == 'v') {
     let i = bulletout.posX + 1;
     const interval = setInterval(() => {
       if (arr[i][bulletout.posY] === 'F') {
         printMap(arr);
-        return (arr[i - 1][bulletout.posY] = emptyField);
+        if (arr[i - 1][bulletout.posY] !== player.tank) {
+          return (arr[i - 1][bulletout.posY] = emptyField);
+        } else;
+        {
+          return;
+        }
       }
       if (arr[i][bulletout.posY] === emptyField) {
         arr[i][bulletout.posY] = bulletout.bullet;
@@ -52,30 +69,31 @@ const fireBullet = (arr) => {
         }
       } else if (arr[i][bulletout.posY] !== emptyField) {
         // arr[i][bulletout.posY] = 'c';
-        arr[i - 1][bulletout.posY] = emptyField;
         arr[i][bulletout.posY] = emptyField;
+        if (arr[i - 1][bulletout.posY] !== player.tank) {
+          arr[i - 1][bulletout.posY] = emptyField;
+        }
 
         clearInterval(interval);
         printMap(arr);
         return;
       }
-      if (arr[i][bulletout.posY] == 'c') {
-        clearInterval(interval);
 
-        return;
-      }
       printMap(arr);
       i++;
-    }, 120);
+    }, 60);
   }
 
-  if (player.tank === '<') {
+  if (player.tank == '<') {
     let i = bulletout.posY - 1;
     const interval = setInterval(() => {
       if (arr[bulletout.posX][i] === 'F') {
         printMap(arr);
-
-        return (arr[bulletout.posX][i + 1] = emptyField);
+        if (arr[bulletout.posX][i + 1] !== player.tank) {
+          return (arr[bulletout.posX][i + 1] = emptyField);
+        } else {
+          return;
+        }
       }
       if (arr[bulletout.posX][i] === emptyField) {
         arr[bulletout.posX][i] = bulletout.bullet;
@@ -87,8 +105,13 @@ const fireBullet = (arr) => {
           return;
         }
       } else if (arr[bulletout.posX][i] !== emptyField) {
-        arr[bulletout.posX][i + 1] = emptyField;
         arr[bulletout.posX][i] = emptyField;
+        if (arr[bulletout.posX][i + 1] !== player.tank) {
+          arr[bulletout.posX][i + 1] = emptyField;
+        }
+        if (arr[bulletout.posX][i + 1] !== player.tank) {
+          arr[bulletout.posX][i + 1] = emptyField;
+        }
         clearInterval(interval);
         printMap(arr);
         return;
@@ -100,15 +123,18 @@ const fireBullet = (arr) => {
         return;
       }
       i--;
-    }, 250);
+    }, 60);
   }
-  if (player.tank === '>') {
+  if (player.tank == '>') {
     let i = bulletout.posY + 1;
     const interval = setInterval(() => {
       if (arr[bulletout.posX][i] === 'F') {
         printMap(arr);
-
-        return (arr[bulletout.posX][i - 1] = emptyField);
+        if (arr[bulletout.posX][i - 1] !== player.tank) {
+          return (arr[bulletout.posX][i - 1] = emptyField);
+        } else {
+          return;
+        }
       }
       if (arr[bulletout.posX][i] === emptyField) {
         arr[bulletout.posX][i] = bulletout.bullet;
@@ -121,7 +147,9 @@ const fireBullet = (arr) => {
         }
       } else if (arr[bulletout.posX][i] !== emptyField) {
         arr[bulletout.posX][i] = emptyField;
-        arr[bulletout.posX][i - 1] = emptyField;
+        if (arr[bulletout.posX][i - 1] !== player.tank) {
+          arr[bulletout.posX][i - 1] = emptyField;
+        }
         clearInterval(interval);
         printMap(arr);
         return;
@@ -133,6 +161,6 @@ const fireBullet = (arr) => {
         return;
       }
       i++;
-    }, 120);
+    }, 60);
   }
 };

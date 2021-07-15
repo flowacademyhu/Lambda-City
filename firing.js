@@ -23,7 +23,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
           found.status = 'dead';
           arr[missilePosX][tank.missilePosY] = emptyField;
         }
-        // innen
+        // player gets shot
         if (
           player.posX === missilePosX &&
           player.posY === tank.missilePosY
@@ -38,7 +38,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
             process.exit();
           }
         }
-        // idáig
+        // player gets shot
       }
       if (arr[missilePosX][tank.missilePosY] !== emptyField) {
         if (arr[missilePosX][tank.missilePosY] !== 'F') {
@@ -72,7 +72,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
           found.status = 'dead';
           arr[missilePosX][tank.missilePosY] = emptyField;
         }
-        // innen
+        // player gets shot
         if (player.posX === missilePosX && player.posY === tank.missilePosY) {
           player.life--;
           arr[missilePosX][tank.missilePosY] = emptyField;
@@ -84,7 +84,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
             process.exit();
           }
         }
-        // idáig
+        // player gets shot
       }
       if (arr[missilePosX][tank.missilePosY] !== emptyField) {
         if (arr[missilePosX][tank.missilePosY] !== 'F') {
@@ -118,7 +118,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
           found.status = 'dead';
           arr[tank.missilePosX][missilePosY] = emptyField;
         }
-        // innen
+        // player gets shot
         if (
           player.posX === tank.missilePosX &&
           player.posY === missilePosY
@@ -133,7 +133,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
             process.exit();
           }
         }
-        // idáig
+        // player gets shot
       }
       if (arr[tank.missilePosX][missilePosY] !== emptyField) {
         if (arr[tank.missilePosX][missilePosY] !== 'F') {
@@ -167,7 +167,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
           found.status = 'dead';
           arr[tank.missilePosX][missilePosY] = emptyField;
         }
-        // innen
+        // player gets shot
         if (
           player.posX === tank.missilePosX &&
           player.posY === missilePosY
@@ -182,7 +182,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
             process.exit();
           }
         }
-        // idáig
+        // player gets shot
       }
       if (arr[tank.missilePosX][missilePosY] !== emptyField) {
         if (arr[tank.missilePosX][missilePosY] !== 'F') {

@@ -1,6 +1,6 @@
 const { printMap } = require('./map');
 // lövés folyamata
-const fireMissile = (arr, emptyField, tank, enemies) => {
+const fireMissile = (arr, emptyField, tank, enemies, player) => {
   tank.missilePosX = tank.posX;
   tank.missilePosY = tank.posY;
 
@@ -22,8 +22,23 @@ const fireMissile = (arr, emptyField, tank, enemies) => {
         if (found && tank.isPlayer) {
           found.status = 'dead';
           arr[missilePosX][tank.missilePosY] = emptyField;
-          console.log(found);
         }
+        // innen
+        if (
+          player.posX === missilePosX &&
+          player.posY === tank.missilePosY
+        ) {
+          player.life--;
+          arr[missilePosX][tank.missilePosY] = emptyField;
+          player.posX = player.spawnPointX;
+          player.posY = player.spawnPointY;
+          arr[player.spawnPointX][player.spawnPointY] = '^';
+          if (player.life === 0) {
+            console.log('YOU DIED');
+            process.exit();
+          }
+        }
+        // idáig
       }
       if (arr[missilePosX][tank.missilePosY] !== emptyField) {
         if (arr[missilePosX][tank.missilePosY] !== 'F') {
@@ -56,8 +71,20 @@ const fireMissile = (arr, emptyField, tank, enemies) => {
         if (found && tank.isPlayer) {
           found.status = 'dead';
           arr[missilePosX][tank.missilePosY] = emptyField;
-          console.log(found);
         }
+        // innen
+        if (player.posX === missilePosX && player.posY === tank.missilePosY) {
+          player.life--;
+          arr[missilePosX][tank.missilePosY] = emptyField;
+          player.posX = player.spawnPointX;
+          player.posY = player.spawnPointY;
+          arr[player.spawnPointX][player.spawnPointY] = '^';
+          if (player.life === 0) {
+            console.log('YOU DIED');
+            process.exit();
+          }
+        }
+        // idáig
       }
       if (arr[missilePosX][tank.missilePosY] !== emptyField) {
         if (arr[missilePosX][tank.missilePosY] !== 'F') {
@@ -90,8 +117,23 @@ const fireMissile = (arr, emptyField, tank, enemies) => {
         if (found && tank.isPlayer) {
           found.status = 'dead';
           arr[tank.missilePosX][missilePosY] = emptyField;
-          console.log(found);
         }
+        // innen
+        if (
+          player.posX === tank.missilePosX &&
+          player.posY === missilePosY
+        ) {
+          player.life--;
+          arr[tank.missilePosX][missilePosY] = emptyField;
+          player.posX = player.spawnPointX;
+          player.posY = player.spawnPointY;
+          arr[player.spawnPointX][player.spawnPointY] = '^';
+          if (player.life === 0) {
+            console.log('YOU DIED');
+            process.exit();
+          }
+        }
+        // idáig
       }
       if (arr[tank.missilePosX][missilePosY] !== emptyField) {
         if (arr[tank.missilePosX][missilePosY] !== 'F') {
@@ -124,8 +166,23 @@ const fireMissile = (arr, emptyField, tank, enemies) => {
         if (found && tank.isPlayer) {
           found.status = 'dead';
           arr[tank.missilePosX][missilePosY] = emptyField;
-          console.log(found);
         }
+        // innen
+        if (
+          player.posX === tank.missilePosX &&
+          player.posY === missilePosY
+        ) {
+          player.life--;
+          arr[tank.missilePosX][missilePosY] = emptyField;
+          player.posX = player.spawnPointX;
+          player.posY = player.spawnPointY;
+          arr[player.spawnPointX][player.spawnPointY] = '^';
+          if (player.life === 0) {
+            console.log('YOU DIED');
+            process.exit();
+          }
+        }
+        // idáig
       }
       if (arr[tank.missilePosX][missilePosY] !== emptyField) {
         if (arr[tank.missilePosX][missilePosY] !== 'F') {

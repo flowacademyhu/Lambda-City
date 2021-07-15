@@ -31,7 +31,7 @@ const playerInput = (arr, enemies, player) => {
       printMap(arr);
     } else if (key === ' ') {
       if (trigger === false) {
-        fireMissile(arr, emptyField, player, enemies);
+        fireMissile(arr, emptyField, player, enemies, player);
         trigger = true;
         setTimeout(() => (trigger = false), 2000);
         printMap(arr);
@@ -50,7 +50,6 @@ const playerMoveUp = (arr, player) => {
     player.tankIcon = '^';
   }
   player.tankIcon = '^';
-  return arr;
 };
 
 // játékos lefelé mozgatása
@@ -61,7 +60,6 @@ const playerMoveDown = (arr, player) => {
     player.tankIcon = 'v';
   }
   player.tankIcon = 'v';
-  return arr;
 };
 
 // játékos balra mozgatása
@@ -72,7 +70,6 @@ const playerMoveLeft = (arr, player) => {
     player.tankIcon = '<';
   }
   player.tankIcon = '<';
-  return arr;
 };
 
 // játékos jobbra mozgatása
@@ -83,7 +80,6 @@ const playerMoveRight = (arr, player) => {
     player.tankIcon = '>';
   }
   player.tankIcon = '>';
-  return arr;
 };
 
 module.exports = {

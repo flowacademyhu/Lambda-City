@@ -20,7 +20,6 @@ const player = {
 
 const enemy1 = {
   tankIcon: 'v',
-  life: 1,
   spawnPointX: map.length - (map.length - 1),
   spawnPointY: (map.length - 1) / 2,
   posX: 0,
@@ -34,7 +33,6 @@ const enemy1 = {
 
 const enemy2 = {
   tankIcon: 'v',
-  life: 1,
   spawnPointX: map.length - (map.length - 1),
   spawnPointY: map.length - 2,
   posX: 0,
@@ -48,7 +46,6 @@ const enemy2 = {
 
 const enemy3 = {
   tankIcon: 'v',
-  life: 1,
   spawnPointX: map.length - (map.length - 1),
   spawnPointY: map.length - (map.length - 1),
   posX: 0,

@@ -9,12 +9,10 @@ const spawnAllEnemies = (arr, enemies) => {
 
 // ellenfél lehelyezése a pályára
 const enemySpawn = (arr, enemy) => {
-  // setTimeout(() => {
   arr[enemy.spawnPointX][enemy.spawnPointY] = enemy.tankIcon;
   enemy.posX = enemy.spawnPointX;
   enemy.posY = enemy.spawnPointY;
   enemy.status = 'spawned';
-  // }, 1500);
 };
 
 // ellenfél mozgása
@@ -43,7 +41,7 @@ const enemyMotion = (arr, enemy, enemies, player) => {
         enemy.direction = 'd';
       }
       setTimeout(() => {
-        fireMissile(arr, emptyField, enemy, enemies);
+        fireMissile(arr, emptyField, enemy, enemies, player);
       }, 1000);
     } else {
       if (enemy.direction === 'w') {
@@ -57,8 +55,6 @@ const enemyMotion = (arr, enemy, enemies, player) => {
       }
     }
   }
-
-  return arr;
 };
 
 // ellenfél felfelé mozgatása
@@ -71,8 +67,6 @@ const enemyMoveUp = (arr, enemy) => {
   } else {
     enemy.direction = 'obstructed';
   }
-
-  return arr;
 };
 
 // ellenfél lefelé mozgatása
@@ -85,8 +79,6 @@ const enemyMoveDown = (arr, enemy) => {
   } else {
     enemy.direction = 'obstructed';
   }
-
-  return arr;
 };
 
 // ellenfél balra mozgatása
@@ -99,8 +91,6 @@ const enemyMoveLeft = (arr, enemy) => {
   } else {
     enemy.direction = 'obstructed';
   }
-
-  return arr;
 };
 
 // ellenfél jobbra mozgatása
@@ -113,8 +103,6 @@ const enemyMoveRight = (arr, enemy) => {
   } else {
     enemy.direction = 'obstructed';
   }
-
-  return arr;
 };
 
 // játékos követhetőségének megvizsgálása

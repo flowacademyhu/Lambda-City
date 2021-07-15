@@ -1,148 +1,145 @@
-const enemies = require('./enemy').enemies;
-const bulletout = {
-  bullet: '*',
-  posX: 0,
-  posY: 0
-};
-const found = enemies.find(
-  (enemy) => enemy.posX === bulletout.posX && enemy.posY === bulletout.posY
-);
-const fireBullet = (arr, player, printMap, emptyField, enemy) => {
-  bulletout.posX = player.posX;
-  bulletout.posY = player.posY;
-  console.log(found);
-  if (player.tank === '^') {
-    let i = bulletout.posX - 1;
+const { printMap } = require('./map');
+// lövés folyamata
+const fireMissile = (arr, emptyField, tank, enemies) => {
+  tank.missilePosX = tank.posX;
+  tank.missilePosY = tank.posY;
+
+  if (tank.tankIcon === '^') {
+    let missilePosX = tank.missilePosX - 1;
     const interval = setInterval(() => {
-      if (arr[i + 1][bulletout.posY] !== player.tank) {
-        arr[i + 1][bulletout.posY] = emptyField;
+      const found = enemies.find(
+        (enemy) => enemy.posX === missilePosX && enemy.posY === tank.missilePosY
+      );
+      if (arr[missilePosX + 1][tank.missilePosY] !== tank.tankIcon) {
+        arr[missilePosX + 1][tank.missilePosY] = emptyField;
       }
       if (
-        arr[i][bulletout.posY] === '^' ||
-        arr[i][bulletout.posY] === 'v' ||
-        arr[i][bulletout.posY] === '<' ||
-        arr[i][bulletout.posY] === '>'
+        arr[missilePosX][tank.missilePosY] === '^' ||
+        arr[missilePosX][tank.missilePosY] === 'v' ||
+        arr[missilePosX][tank.missilePosY] === '<' ||
+        arr[missilePosX][tank.missilePosY] === '>'
       ) {
-        // const found = enemies.find(
-        //   (enemy) => enemy.posX === i && enemy.posY === bulletout.posY
-        // );
-        if (found) {
+        if (found && tank.isPlayer) {
           found.status = 'dead';
-          arr[i][bulletout.posY] = emptyField;
+          arr[missilePosX][tank.missilePosY] = emptyField;
           console.log(found);
         }
       }
-      if (arr[i][bulletout.posY] !== emptyField) {
-        if (arr[i][bulletout.posY] !== 'F') {
-          arr[i][bulletout.posY] = emptyField;
+      if (arr[missilePosX][tank.missilePosY] !== emptyField) {
+        if (arr[missilePosX][tank.missilePosY] !== 'F') {
+          arr[missilePosX][tank.missilePosY] = emptyField;
         }
-
         clearInterval(interval);
       } else {
-        arr[i][bulletout.posY] = bulletout.bullet;
-        i--;
+        arr[missilePosX][tank.missilePosY] = tank.missileIcon;
       }
+      missilePosX--;
       printMap(arr);
     }, 60);
   }
 
-  if (player.tank === 'v') {
-    let i = bulletout.posX + 1;
+  if (tank.tankIcon === 'v') {
+    let missilePosX = tank.missilePosX + 1;
     const interval = setInterval(() => {
-      if (arr[i - 1][bulletout.posY] !== player.tank) {
-        arr[i - 1][bulletout.posY] = emptyField;
+      const found = enemies.find(
+        (enemy) => enemy.posX === missilePosX && enemy.posY === tank.missilePosY
+      );
+      if (arr[missilePosX - 1][tank.missilePosY] !== tank.tankIcon) {
+        arr[missilePosX - 1][tank.missilePosY] = emptyField;
       }
       if (
-        arr[i][bulletout.posY] === '^' ||
-        arr[i][bulletout.posY] === 'v' ||
-        arr[i][bulletout.posY] === '<' ||
-        arr[i][bulletout.posY] === '>'
+        arr[missilePosX][tank.missilePosY] === '^' ||
+        arr[missilePosX][tank.missilePosY] === 'v' ||
+        arr[missilePosX][tank.missilePosY] === '<' ||
+        arr[missilePosX][tank.missilePosY] === '>'
       ) {
-        if (found) {
+        if (found && tank.isPlayer) {
           found.status = 'dead';
-          arr[i][bulletout.posY] = emptyField;
+          arr[missilePosX][tank.missilePosY] = emptyField;
+          console.log(found);
         }
       }
-      if (arr[i][bulletout.posY] !== emptyField) {
-        if (arr[i][bulletout.posY] !== 'F') {
-          arr[i][bulletout.posY] = emptyField;
+      if (arr[missilePosX][tank.missilePosY] !== emptyField) {
+        if (arr[missilePosX][tank.missilePosY] !== 'F') {
+          arr[missilePosX][tank.missilePosY] = emptyField;
         }
         clearInterval(interval);
       } else {
-        arr[i][bulletout.posY] = bulletout.bullet;
-        i++;
+        arr[missilePosX][tank.missilePosY] = tank.missileIcon;
       }
+      missilePosX++;
       printMap(arr);
     }, 60);
   }
 
-  if (player.tank === '<') {
-    let i = bulletout.posY - 1;
+  if (tank.tankIcon === '<') {
+    let missilePosY = tank.missilePosY - 1;
     const interval = setInterval(() => {
-      if (arr[bulletout.posX][i + 1] !== player.tank) {
-        arr[bulletout.posX][i + 1] = emptyField;
+      const found = enemies.find(
+        (enemy) => enemy.posX === tank.missilePosX && enemy.posY === missilePosY
+      );
+      if (arr[tank.missilePosX][missilePosY + 1] !== tank.tankIcon) {
+        arr[tank.missilePosX][missilePosY + 1] = emptyField;
       }
       if (
-        arr[i][bulletout.posY] === '^' ||
-        arr[i][bulletout.posY] === 'v' ||
-        arr[i][bulletout.posY] === '<' ||
-        arr[i][bulletout.posY] === '>'
+        arr[tank.missilePosX][missilePosY] === '^' ||
+        arr[tank.missilePosX][missilePosY] === 'v' ||
+        arr[tank.missilePosX][missilePosY] === '<' ||
+        arr[tank.missilePosX][missilePosY] === '>'
       ) {
-        // const found = enemies.find(
-        //   (enemy) => enemy.posX === bulletout.posX && enemy.posY === i
-        // );
-        if (found) {
+        if (found && tank.isPlayer) {
           found.status = 'dead';
-          arr[bulletout.posX][i] = emptyField;
+          arr[tank.missilePosX][missilePosY] = emptyField;
+          console.log(found);
         }
       }
-      if (arr[bulletout.posX][i] !== emptyField) {
-        if (arr[bulletout.posX][i] !== 'F') {
-          arr[bulletout.posX][i] = emptyField;
+      if (arr[tank.missilePosX][missilePosY] !== emptyField) {
+        if (arr[tank.missilePosX][missilePosY] !== 'F') {
+          arr[tank.missilePosX][missilePosY] = emptyField;
         }
         clearInterval(interval);
       } else {
-        arr[bulletout.posX][i] = bulletout.bullet;
-        i--;
+        arr[tank.missilePosX][missilePosY] = tank.missileIcon;
       }
+      missilePosY--;
       printMap(arr);
     }, 60);
   }
 
-  if (player.tank === '>') {
-    let i = bulletout.posY + 1;
+  if (tank.tankIcon === '>') {
+    let missilePosY = tank.missilePosY + 1;
     const interval = setInterval(() => {
-      if (arr[bulletout.posX][i - 1] !== player.tank) {
-        arr[bulletout.posX][i - 1] = emptyField;
+      const found = enemies.find(
+        (enemy) => enemy.posX === tank.missilePosX && enemy.posY === missilePosY
+      );
+      if (arr[tank.missilePosX][missilePosY - 1] !== tank.tankIcon) {
+        arr[tank.missilePosX][missilePosY - 1] = emptyField;
       }
       if (
-        arr[i][bulletout.posY] === '^' ||
-        arr[i][bulletout.posY] === 'v' ||
-        arr[i][bulletout.posY] === '<' ||
-        arr[i][bulletout.posY] === '>'
+        arr[tank.missilePosX][missilePosY] === '^' ||
+        arr[tank.missilePosX][missilePosY] === 'v' ||
+        arr[tank.missilePosX][missilePosY] === '<' ||
+        arr[tank.missilePosX][missilePosY] === '>'
       ) {
-        // const found = enemies.find(
-        //   (enemy) => enemy.posX === bulletout.posX && enemy.posY === i
-        // );
-        if (found) {
+        if (found && tank.isPlayer) {
           found.status = 'dead';
-          arr[bulletout.posX][i] = emptyField;
+          arr[tank.missilePosX][missilePosY] = emptyField;
+          console.log(found);
         }
       }
-      if (arr[bulletout.posX][i] !== emptyField) {
-        if (arr[bulletout.posX][i] !== 'F') {
-          arr[bulletout.posX][i] = emptyField;
+      if (arr[tank.missilePosX][missilePosY] !== emptyField) {
+        if (arr[tank.missilePosX][missilePosY] !== 'F') {
+          arr[tank.missilePosX][missilePosY] = emptyField;
         }
         clearInterval(interval);
       } else {
-        arr[bulletout.posX][i] = bulletout.bullet;
-        i++;
+        arr[tank.missilePosX][missilePosY] = tank.missileIcon;
       }
+      missilePosY++;
       printMap(arr);
     }, 60);
   }
 };
 module.exports = {
-  fireBullet,
-  found
+  fireMissile
 };

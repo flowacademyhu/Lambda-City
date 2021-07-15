@@ -1,3 +1,4 @@
+const table = require('table');
 const emptyField = '';
 
 // játéktér generálása
@@ -27,15 +28,20 @@ const generateMap = (width, height) => {
     for (let posY = 1; posY < arr[posX].length - 1; posY++) {
       if (posX % 6 !== 0 && posY % 2 === 0) {
         arr[posX][posY] = 'B';
-      } else if (posX === (arr.length - 1) / 2 && posY % 11 === 1) {
-        arr[posX][posY] = 'U';
       }
     }
   }
   return arr;
 };
 
+// pálya kirajzoltatása
+const printMap = (map) => {
+  // console.clear(map);
+  console.log(table.table(map));
+};
+
 module.exports = {
   emptyField,
-  generateMap
+  generateMap,
+  printMap
 };

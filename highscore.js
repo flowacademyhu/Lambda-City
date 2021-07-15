@@ -1,28 +1,26 @@
-const readLine = require('readline-sync'); // Nem fogja megtalálni, telepítsük NPM-el!
+const readLine = require('readline-sync');
 const fs = require('fs');
-const word = readLine.question('Hogy hívnak bajnok?'); // Ez kiírja konzolra a megadott
-const points = 69;
-// // szöveget, és egy enter leütéséig beolvassa az adatokat, majd letárolja
-// // változóban.
-// const point = readLine.question('Mennyi pontod lett?');
+const word = readLine.question('Hogy hívnak bajnok?'); // GAME OVER ESETÉN ELŐHÍVANDÓ!!!!
+const points = 69; // PONTOK TÁROLÁSA, VÁLTOZÓBA ADÁS GAME OVER ESETÉN!!!!!!
 
 // fájlbaírás függvénye!
+
 const highscore = (name, points) => {
-  fs.appendFileSync('message.txt', `\n${name}  :  ${points} pont`);
+  fs.appendFileSync('message.txt', `\n${name}  :  ${points} pont `);
 };
 
 // játékos név beírása scoreboardra!
 highscore(word, points);
 
-// scoreboard kiírása!
+// scoreboard utoljára beírt 5 elem tömbbe írása!!!
 
 const array = fs.readFileSync('message.txt').toString().split('\n');
-
-for (let i = 0; i < array.length; i++) {
-  if (i < 5) {
-    console.log(array[i]);
-  }
+const tomb = [];
+for (let i = array.length - 1; i >= 0; i--) {
+  tomb.push(array[i]);
 }
+// SCOREBOARD KIÍRÁS
+console.log(tomb.slice(0, 5).join('\r\n'));
 
 module.exports = {
   highscore

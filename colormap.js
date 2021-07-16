@@ -60,13 +60,13 @@ const color = (map, enemies) => {
         coloredMap[i][j] = chalk.grey(chalk.bgGrey('FF'));
       }
       if (coloredMap[i][j] === '*') {
-        coloredMap[i][j] = '💩';
+        coloredMap[i][j] = '⚫️';
       }
       if (coloredMap[i][j] === 'E') {
         coloredMap[i][j] = chalk.bgYellow(chalk.cyan('MM'));
       }
       if (coloredMap[i][j] === 'B') {
-        coloredMap[i][j] = '▓▓';
+        coloredMap[i][j] = chalk.yellow('▓▓');
       }
       if (coloredMap[i][j] === '') {
         coloredMap[i][j] = '  ';

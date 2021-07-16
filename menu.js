@@ -4,6 +4,8 @@ const fs = require('fs');
 const mainMusic = require('./sound').mainMusic;
 const menuMusic = require('./sound').menuMusic;
 const mplayer = require('./sound').mplayer;
+const mplayer2 = require('./sound').mplayer2;
+const mplayer3 = require('./sound').mplayer3;
 
 const title = () => {
   cfonts.say('Lambda|City', {
@@ -69,7 +71,10 @@ const mainMenu = (menu) => {
     }
   });
 };
-
+if (process.exit) {
+  mplayer2.stop();
+  mplayer3.stop();
+}
 menuMusic();
 console.clear();
 title();

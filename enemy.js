@@ -1,5 +1,7 @@
 const emptyField = require('./map').emptyField;
 const { fireMissile, getHighScore } = require('./firing');
+const mplayer2 = require('./sound').mplayer2;
+const mplayer3 = require('./sound').mplayer3;
 
 let numOfEnemies = 0;
 
@@ -22,6 +24,8 @@ const enemySpawn = (arr, enemy) => {
   numOfEnemies++;
   if (numOfEnemies === 10) {
     console.log('YOU WIN');
+    mplayer2.stop();
+    mplayer3.stop();
     process.exit();
   }
 };

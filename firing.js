@@ -2,6 +2,9 @@ const printColorMap = require('./colormap').printColorMap;
 const fireSound = require('./sound').fireSound;
 const explosionSound = require('./sound').explosionSound;
 const bricksSound = require('./sound').bricksSound;
+const mplayer2 = require('./sound').mplayer2;
+const mplayer3 = require('./sound').mplayer3;
+const deadSound = require('./sound').deadSound;
 
 let highScore = 0;
 
@@ -25,7 +28,8 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
       }
       // eagle gets shot
       if (arr[missilePosX][tank.missilePosY] === 'E') {
-        console.log('GAME OVER');
+        mplayer2.stop();
+        mplayer3.stop();
         process.exit();
       }
       // eagle gets shot
@@ -51,6 +55,8 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
           arr[player.spawnPointX][player.spawnPointY] = '^';
           if (player.life === 0) {
             console.log('YOU DIED');
+            mplayer2.stop();
+            mplayer3.stop();
             process.exit();
           }
         }
@@ -82,6 +88,8 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
       // eagle gets shot
       if (arr[missilePosX][tank.missilePosY] === 'E') {
         console.log('GAME OVER');
+        mplayer2.stop();
+        mplayer3.stop();
         process.exit();
       }
       // eagle gets shot
@@ -106,6 +114,8 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
           arr[player.spawnPointX][player.spawnPointY] = '^';
           if (player.life === 0) {
             console.log('YOU DIED');
+            mplayer2.stop();
+            mplayer3.stop();
             process.exit();
           }
         }
@@ -136,6 +146,8 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
       // eagle gets shot
       if (arr[tank.missilePosX][missilePosY] === 'E') {
         console.log('GAME OVER');
+        mplayer2.stop();
+        mplayer3.stop();
         process.exit();
       }
       // eagle gets shot
@@ -161,6 +173,8 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
           arr[player.spawnPointX][player.spawnPointY] = '^';
           if (player.life === 0) {
             console.log('YOU DIED');
+            mplayer2.stop();
+            mplayer3.stop();
             process.exit();
           }
         }
@@ -191,6 +205,8 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
       // eagle gets shot
       if (arr[tank.missilePosX][missilePosY] === 'E') {
         console.log('GAME OVER');
+        mplayer2.stop();
+        mplayer3.stop();
         process.exit();
       }
       // eagle gets shot
@@ -216,6 +232,8 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
           arr[player.spawnPointX][player.spawnPointY] = '^';
           if (player.life === 0) {
             console.log('YOU DIED');
+            mplayer2.stop();
+            mplayer3.stop();
             process.exit();
           }
         }

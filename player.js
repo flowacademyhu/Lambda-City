@@ -52,7 +52,7 @@ const playerInput = (arr, enemies, player, getNumberOfEnemies) => {
     } else if (key === 'h') {
       mplayer2.stop();
       mplayer3.stop();
-      process.exit();
+      setTimeout(() => process.exit(), 300);
     }
   });
 };

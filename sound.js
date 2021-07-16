@@ -32,11 +32,18 @@ const bricksSound = () => {
     .exec();
 };
 
+const deadSound = () => {
+  mpg321()
+    .loop(1) // infinity loop
+    .file('./dead.mp3')
+    .exec();
+};
 const tankSound = () => {
   mplayer2.play(tankS);
 };
 
 const mainMusic = () => {
+  mplayer3.gain(20);
   mplayer3.play(mainSong);
 };
 
@@ -53,5 +60,6 @@ module.exports = {
   menuMusic,
   mplayer2,
   mplayer3,
-  mplayer
+  mplayer,
+  deadSound
 };

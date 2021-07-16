@@ -26,7 +26,8 @@ const menu = [
 	}).string
 ];
 
-term.singleColumnMenu(menu, function(error, response) {
+const mainMenu = (menu) => {
+	term.singleColumnMenu(menu, function(error, response) {
 		response.selectedIndex
     if (response.selectedIndex === 0) { 
         const main = require('./main');
@@ -48,9 +49,22 @@ term.singleColumnMenu(menu, function(error, response) {
 			colors: ['red']
 		  }
 		);
-		process.exit();
-    } else {
+		term.grabInput();
+		term.on('key', function (name) {
+    		if (name === 'ESCAPE') {
+      			term.removeAllListeners('key');
+				console.clear();
+				mainMenu(menu);
+    		}
+		}
+  	);} else {
         console.clear();
         process.exit();
     }
-});
+})};
+
+mainMenu(menu);
+
+module.exports = {
+	mainMenu
+};

@@ -105,10 +105,13 @@ const print2d = (arr) => {
   }
 };
 
-const printColorMap = (map, enemies) => {
+const printColorMap = (map, enemies, player, totalEnemies, score) => {
   console.clear();
   const coloredMap = color(map, enemies);
   print2d(coloredMap);
+  console.log('Life:', player.life);
+  console.log('Enemies left:', 10 - totalEnemies);
+  console.log('Score:', score);
 };
 
 module.exports = {

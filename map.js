@@ -1,5 +1,4 @@
 const table = require('table');
-// const { getNumOfEnemies } = require('./enemy');
 const emptyField = '';
 
 // játéktér generálása
@@ -36,9 +35,11 @@ const generateMap = (width, height) => {
 };
 
 // pálya kirajzoltatása
-const printMap = (map, score) => {
+const printMap = (map, score, player, totalEnemies) => {
   console.clear(map);
   console.log(table.table(map));
+  console.log('Life:', player.life);
+  console.log('Enemies left:', 10 - totalEnemies);
   console.log('Score:', score);
 };
 

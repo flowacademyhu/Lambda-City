@@ -1,4 +1,3 @@
-const { printMap } = require('./map');
 const printColorMap = require('./colormap').printColorMap;
 let highScore = 0;
 
@@ -7,7 +6,7 @@ const getHighScore = () => {
 };
 
 // lövés folyamata
-const fireMissile = (arr, emptyField, tank, enemies, player) => {
+const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
   tank.missilePosX = tank.posX;
   tank.missilePosY = tank.posY;
 
@@ -61,7 +60,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
       }
       missilePosX--;
       // printMap(arr, highScore);
-      printColorMap(arr, enemies);
+      printColorMap(arr, enemies, player, totalEnemies, highScore);
     }, 60);
   }
 
@@ -114,7 +113,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
         arr[missilePosX][tank.missilePosY] = tank.missileIcon;
       }
       missilePosX++;
-      printColorMap(arr, enemies);
+      printColorMap(arr, enemies, player, totalEnemies, highScore);
     }, 60);
   }
 
@@ -167,7 +166,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
         arr[tank.missilePosX][missilePosY] = tank.missileIcon;
       }
       missilePosY--;
-      printColorMap(arr, enemies);
+      printColorMap(arr, enemies, player, totalEnemies, highScore);
     }, 60);
   }
 
@@ -220,7 +219,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
         arr[tank.missilePosX][missilePosY] = tank.missileIcon;
       }
       missilePosY++;
-      printColorMap(arr, enemies);
+      printColorMap(arr, enemies, player, totalEnemies, highScore);
     }, 60);
   }
 };

@@ -1,4 +1,4 @@
-const { printMap, generateMap } = require('./map');
+const { generateMap } = require('./map');
 const { playerInput } = require('./player');
 const printColorMap = require('./colormap').printColorMap;
 
@@ -6,7 +6,8 @@ const {
   spawnAllEnemies,
   enemySpawn,
   enemyMotion,
-  getHighScore
+  getHighScore,
+  getNumOfEnemies
 } = require('./enemy');
 const map = generateMap(15, 15);
 
@@ -67,7 +68,7 @@ const enemies = [enemy1, enemy2, enemy3];
 
 // játék futtatásához szükséges függvény
 const main = () => {
-  playerInput(map, enemies, player);
+  playerInput(map, enemies, player, getNumOfEnemies);
   spawnAllEnemies(map, enemies);
   setInterval(() => {
     for (const enemy of enemies) {
@@ -76,7 +77,7 @@ const main = () => {
       } else if (enemy.status === 'dead') {
         enemySpawn(map, enemy);
       }
-      printColorMap(map, enemies);
+      printColorMap(map, enemies, player, getNumOfEnemies(), getHighScore());
     }
   }, 500);
 };

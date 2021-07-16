@@ -1,13 +1,17 @@
 const emptyField = require('./map').emptyField;
 const { fireMissile, getHighScore } = require('./firing');
 
+let numOfEnemies = 0;
+
+const getNumOfEnemies = () => {
+  return numOfEnemies;
+};
+
 const spawnAllEnemies = (arr, enemies) => {
   for (const enemy of enemies) {
     enemySpawn(arr, enemy);
   }
 };
-
-let numOfEnemies = 0;
 
 // ellenfél lehelyezése a pályára
 const enemySpawn = (arr, enemy) => {
@@ -20,10 +24,6 @@ const enemySpawn = (arr, enemy) => {
     console.log('YOU WIN');
     process.exit();
   }
-};
-
-const getNumOfEnemies = () => {
-  return numOfEnemies;
 };
 
 // ellenfél mozgása
@@ -52,7 +52,7 @@ const enemyMotion = (arr, enemy, enemies, player) => {
         enemy.direction = 'd';
       }
       setTimeout(() => {
-        fireMissile(arr, emptyField, enemy, enemies, player);
+        fireMissile(arr, emptyField, enemy, enemies, player, getNumOfEnemies());
       }, 1000);
     } else {
       if (enemy.direction === 'w') {

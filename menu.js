@@ -65,6 +65,7 @@ const mainMenu = (menu) => {
     }
 })};
 
+console.clear();
 title();
 mainMenu(menu);
 

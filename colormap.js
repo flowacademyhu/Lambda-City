@@ -1,40 +1,40 @@
 const chalk = require('chalk');
-const emptyField = '';
+// const emptyField = '';
 
 // játéktér generálása
-const generateMap = (width, height) => {
-  console.clear();
-  const arr = new Array(height);
-  const PosEagle = (arr.length - 1) / 2;
-  for (let posX = 0; posX < arr.length; posX++) {
-    arr[posX] = new Array(width);
-  }
-  for (let posX = 0; posX < arr.length; posX++) {
-    for (let posY = 0; posY < arr[posX].length; posY++) {
-      arr[posX][posY] = emptyField;
-      arr[0][posY] = 'FF';
-      arr[arr.length - 1][posY] = 'FF';
-      arr[posX][0] = 'FF';
-      arr[posX][arr.length - 1] = 'FF';
-      arr[arr.length - 2][PosEagle] = 'EE';
-      arr[arr.length - 2][PosEagle - 1] = 'BB';
-      arr[arr.length - 2][PosEagle + 1] = 'BB';
-      arr[arr.length - 3][PosEagle - 1] = 'BB';
-      arr[arr.length - 3][PosEagle + 1] = 'BB';
-      arr[arr.length - 3][PosEagle] = 'BB';
-    }
-  }
-  for (let posX = 2; posX < arr.length - 3; posX++) {
-    for (let posY = 1; posY < arr[posX].length - 1; posY++) {
-      if (posX % 6 !== 0 && posY % 2 === 0) {
-        arr[posX][posY] = 'BB';
-      } else if (posX === (arr.length - 1) / 2 && posY % 11 === 1) {
-        arr[posX][posY] = 'UU';
-      }
-    }
-  }
-  return arr;
-};
+// const generateMap = (width, height) => {
+//   console.clear();
+//   const arr = new Array(height);
+//   const PosEagle = (arr.length - 1) / 2;
+//   for (let posX = 0; posX < arr.length; posX++) {
+//     arr[posX] = new Array(width);
+//   }
+//   for (let posX = 0; posX < arr.length; posX++) {
+//     for (let posY = 0; posY < arr[posX].length; posY++) {
+//       arr[pos0X][posY] = emptyField;
+//       arr[0][posY] = 'FF';
+//       arr[arr.length - 1][posY] = 'FF';
+//       arr[posX][0] = 'FF';
+//       arr[posX][arr.length - 1] = 'FF';
+//       arr[arr.length - 2][PosEagle] = 'EE';
+//       arr[arr.length - 2][PosEagle - 1] = 'BB';
+//       arr[arr.length - 2][PosEagle + 1] = 'BB';
+//       arr[arr.length - 3][PosEagle - 1] = 'BB';
+//       arr[arr.length - 3][PosEagle + 1] = 'BB';
+//       arr[arr.length - 3][PosEagle] = 'BB';
+//     }
+//   }
+//   for (let posX = 2; posX < arr.length - 3; posX++) {
+//     for (let posY = 1; posY < arr[posX].length - 1; posY++) {
+//       if (posX % 6 !== 0 && posY % 2 === 0) {
+//         arr[posX][posY] = 'BB';
+//       } else if (posX === (arr.length - 1) / 2 && posY % 11 === 1) {
+//         arr[posX][posY] = 'UU';
+//       }
+//     }
+//   }
+//   return arr;
+// };
 const directions = ['^', '>', '<', 'v'];
 
 const newDirections = {

@@ -1,5 +1,6 @@
 const { printMap, emptyField } = require('./map');
 const { fireMissile, getHighScore } = require('./firing');
+const printColorMap = require('./colormap').printColorMap;
 let trigger = false;
 
 // játékos input beolvasása
@@ -7,7 +8,8 @@ const playerInput = (arr, enemies, player) => {
   arr[arr.length - 2][(arr.length - 1) / 2 - 2] = player.tankIcon;
   player.posX = player.spawnPointX;
   player.posY = player.spawnPointY;
-  printMap(arr, getHighScore());
+  // printMap(arr, getHighScore());
+  printColorMap(arr, enemies);
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.resume();
@@ -16,25 +18,30 @@ const playerInput = (arr, enemies, player) => {
     if (key === 'w') {
       playerMoveUp(arr, player);
       arr[player.posX][player.posY] = player.tankIcon;
-      printMap(arr, getHighScore());
+      // printMap(arr, getHighScore());
+      printColorMap(arr, enemies);
     } else if (key === 's') {
       playerMoveDown(arr, player);
       arr[player.posX][player.posY] = player.tankIcon;
-      printMap(arr, getHighScore());
+      // printMap(arr, getHighScore());
+      printColorMap(arr, enemies);
     } else if (key === 'a') {
       playerMoveLeft(arr, player);
       arr[player.posX][player.posY] = player.tankIcon;
-      printMap(arr, getHighScore());
+      // printMap(arr, getHighScore());
+      printColorMap(arr, enemies);
     } else if (key === 'd') {
       playerMoveRight(arr, player);
       arr[player.posX][player.posY] = player.tankIcon;
-      printMap(arr, getHighScore());
+      // printMap(arr, getHighScore());
+      printColorMap(arr, enemies);
     } else if (key === ' ') {
       if (trigger === false) {
         fireMissile(arr, emptyField, player, enemies, player);
         trigger = true;
         setTimeout(() => (trigger = false), 2000);
-        printMap(arr, getHighScore());
+        // printMap(arr, getHighScore());
+        printColorMap(arr, enemies);
       }
     } else if (key === 'h') {
       process.exit();

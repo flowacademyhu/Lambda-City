@@ -1,5 +1,6 @@
 const { printMap, generateMap } = require('./map');
 const { playerInput } = require('./player');
+const printColorMap = require('./colormap').printColorMap;
 
 const {
   spawnAllEnemies,
@@ -75,8 +76,10 @@ const main = () => {
       } else if (enemy.status === 'dead') {
         enemySpawn(map, enemy);
       }
-      printMap(map, getHighScore());
+      printColorMap(map, enemies);
     }
   }, 500);
 };
 main();
+
+module.exports = { enemies };

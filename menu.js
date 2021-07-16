@@ -2,11 +2,12 @@ const term = require('terminal-kit').terminal;
 const cfonts = require('cfonts');
 const fs = require('fs');
 
-cfonts.say('Lambda|City', {
+const title = () => {
+	cfonts.say('Lambda|City', {
 	font: '3d',              
 	align: 'center',              
 	colors: ['red'],             
-});
+})};
 
 const menu = [
 	cfonts.render('Play', {
@@ -54,6 +55,7 @@ const mainMenu = (menu) => {
     		if (name === 'ESCAPE') {
       			term.removeAllListeners('key');
 				console.clear();
+				title();
 				mainMenu(menu);
     		}
 		}
@@ -63,8 +65,10 @@ const mainMenu = (menu) => {
     }
 })};
 
+title();
 mainMenu(menu);
 
 module.exports = {
+	title,
 	mainMenu
 };

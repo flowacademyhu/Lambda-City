@@ -1,29 +1,10 @@
-const table = require('table').table;
-const map = require('./map').generateMap(15, 15);
-const emptyField = require('./map').emptyField;
-const fireBullet = require('./firing').fireBullet;
-
-// pálya kirajzoltatása
-const printMap = (map) => {
-  // console.clear(map);
-  console.log(table(map));
-};
-
+const { printMap, emptyField } = require('./map');
+const { fireMissile } = require('./firing');
 let trigger = false;
 
-const player = {
-  tank: '^',
-  life: 3,
-  spawnPointX: map.length - 2,
-  spawnPointY: (map.length - 1) / 2 - 2,
-  posX: 0,
-  posY: 0,
-  score: 0
-};
-
 // játékos input beolvasása
-const playerInput = (arr) => {
-  arr[arr.length - 2][(arr.length - 1) / 2 - 2] = player.tank;
+const playerInput = (arr, enemies, player) => {
+  arr[arr.length - 2][(arr.length - 1) / 2 - 2] = player.tankIcon;
   player.posX = player.spawnPointX;
   player.posY = player.spawnPointY;
   printMap(arr);
@@ -33,120 +14,75 @@ const playerInput = (arr) => {
   stdin.setEncoding('utf8');
   stdin.on('data', (key) => {
     if (key === 'w') {
-      playerMoveUp(arr);
-      arr[player.posX][player.posY] = player.tank;
+      playerMoveUp(arr, player);
+      arr[player.posX][player.posY] = player.tankIcon;
       printMap(arr);
     } else if (key === 's') {
-      playerMoveDown(arr);
-      arr[player.posX][player.posY] = player.tank;
+      playerMoveDown(arr, player);
+      arr[player.posX][player.posY] = player.tankIcon;
       printMap(arr);
     } else if (key === 'a') {
-      playerMoveLeft(arr);
-      arr[player.posX][player.posY] = player.tank;
+      playerMoveLeft(arr, player);
+      arr[player.posX][player.posY] = player.tankIcon;
       printMap(arr);
     } else if (key === 'd') {
-      playerMoveRight(arr);
-      arr[player.posX][player.posY] = player.tank;
+      playerMoveRight(arr, player);
+      arr[player.posX][player.posY] = player.tankIcon;
       printMap(arr);
     } else if (key === ' ') {
       if (trigger === false) {
-        fireBullet(arr, player, printMap, emptyField);
+        fireMissile(arr, emptyField, player, enemies, player);
         trigger = true;
         setTimeout(() => (trigger = false), 2000);
         printMap(arr);
       }
     } else if (key === 'h') {
       process.exit();
-    } else if (key === 'q') {
-      if (player.tank === '^') {
-        arr[player.posX][player.posY] = player.tank;
-        player.tank = '<';
-        printMap(arr);
-      } else if (player.tank === '<') {
-        arr[player.posX][player.posY] = player.tank;
-        player.tank = 'v';
-        printMap(arr);
-      } else if (player.tank === 'v') {
-        arr[player.posX][player.posY] = player.tank;
-        player.tank = '>';
-        printMap(arr);
-      } else if (player.tank === '>') {
-        arr[player.posX][player.posY] = player.tank;
-        player.tank = '^';
-        printMap(arr);
-      }
-    } else if (key === 'e') {
-      if (player.tank === '^') {
-        arr[player.posX][player.posY] = player.tank;
-        player.tank = '>';
-        printMap(arr);
-      } else if (player.tank === '>') {
-        arr[player.posX][player.posY] = player.tank;
-        player.tank = 'v';
-        printMap(arr);
-      } else if (player.tank === 'v') {
-        arr[player.posX][player.posY] = player.tank;
-        player.tank = '<';
-        printMap(arr);
-      } else if (player.tank === '<') {
-        arr[player.posX][player.posY] = player.tank;
-        player.tank = '^';
-        printMap(arr);
-      }
     }
   });
 };
 
 // játékos felfelé mozgatása
-const playerMoveUp = (arr) => {
+const playerMoveUp = (arr, player) => {
   if (arr[player.posX - 1][player.posY] === emptyField) {
     player.posX--;
     arr[player.posX + 1][player.posY] = emptyField;
-    player.tank = '^';
-  } else {
-    player.tank = '^';
+    player.tankIcon = '^';
   }
-  return arr;
+  player.tankIcon = '^';
 };
 
 // játékos lefelé mozgatása
-const playerMoveDown = (arr) => {
+const playerMoveDown = (arr, player) => {
   if (arr[player.posX + 1][player.posY] === emptyField) {
     player.posX++;
     arr[player.posX - 1][player.posY] = emptyField;
-    player.tank = 'v';
-  } else {
-    player.tank = 'v';
+    player.tankIcon = 'v';
   }
-  return arr;
+  player.tankIcon = 'v';
 };
 
 // játékos balra mozgatása
-const playerMoveLeft = (arr) => {
+const playerMoveLeft = (arr, player) => {
   if (arr[player.posX][player.posY - 1] === emptyField) {
     player.posY--;
     arr[player.posX][player.posY + 1] = emptyField;
-    player.tank = '<';
-  } else {
-    player.tank = '<';
+    player.tankIcon = '<';
   }
-  return arr;
+  player.tankIcon = '<';
 };
 
 // játékos jobbra mozgatása
-const playerMoveRight = (arr) => {
+const playerMoveRight = (arr, player) => {
   if (arr[player.posX][player.posY + 1] === emptyField) {
     player.posY++;
     arr[player.posX][player.posY - 1] = emptyField;
-    player.tank = '>';
-  } else {
-    player.tank = '>';
+    player.tankIcon = '>';
   }
-  return arr;
+  player.tankIcon = '>';
 };
 
 module.exports = {
-  player,
   playerInput,
   printMap
 };

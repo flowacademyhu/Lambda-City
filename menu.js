@@ -74,6 +74,7 @@ menuMusic();
 console.clear();
 title();
 mainMenu(menu);
+menuMusic();
 
 module.exports = {
   title,

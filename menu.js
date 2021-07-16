@@ -30,7 +30,6 @@ const menu = [
 ];
 
 const mainMenu = (menu) => {
-  menuMusic();
   term.singleColumnMenu(menu, function (error, response) {
     response.selectedIndex;
     if (response.selectedIndex === 0) {
@@ -71,6 +70,7 @@ const mainMenu = (menu) => {
 console.clear();
 title();
 mainMenu(menu);
+menuMusic();
 
 module.exports = {
   title,

@@ -7,7 +7,7 @@ const getHighScore = () => {
 };
 
 // lövés folyamata
-const fireMissile = (arr, emptyField, tank, enemies, player) => {
+const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
   tank.missilePosX = tank.posX;
   tank.missilePosY = tank.posY;
 
@@ -60,7 +60,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
         arr[missilePosX][tank.missilePosY] = tank.missileIcon;
       }
       missilePosX--;
-      printMap(arr, highScore);
+      printMap(arr, highScore, player, totalEnemies);
     }, 60);
   }
 
@@ -113,7 +113,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
         arr[missilePosX][tank.missilePosY] = tank.missileIcon;
       }
       missilePosX++;
-      printMap(arr, highScore);
+      printMap(arr, highScore, player, totalEnemies);
     }, 60);
   }
 
@@ -166,7 +166,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
         arr[tank.missilePosX][missilePosY] = tank.missileIcon;
       }
       missilePosY--;
-      printMap(arr, highScore);
+      printMap(arr, highScore, player, totalEnemies);
     }, 60);
   }
 
@@ -219,7 +219,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
         arr[tank.missilePosX][missilePosY] = tank.missileIcon;
       }
       missilePosY++;
-      printMap(arr, highScore);
+      printMap(arr, highScore, player, totalEnemies);
     }, 60);
   }
 };

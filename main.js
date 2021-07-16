@@ -5,7 +5,8 @@ const {
   spawnAllEnemies,
   enemySpawn,
   enemyMotion,
-  getHighScore
+  getHighScore,
+  getNumOfEnemies
 } = require('./enemy');
 const map = generateMap(15, 15);
 
@@ -66,7 +67,7 @@ const enemies = [enemy1, enemy2, enemy3];
 
 // játék futtatásához szükséges függvény
 const main = () => {
-  playerInput(map, enemies, player);
+  playerInput(map, enemies, player, getNumOfEnemies);
   spawnAllEnemies(map, enemies);
   setInterval(() => {
     for (const enemy of enemies) {
@@ -75,7 +76,7 @@ const main = () => {
       } else if (enemy.status === 'dead') {
         enemySpawn(map, enemy);
       }
-      printMap(map, getHighScore());
+      printMap(map, getHighScore(), player, getNumOfEnemies());
     }
   }, 500);
 };

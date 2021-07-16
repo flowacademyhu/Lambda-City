@@ -3,11 +3,11 @@ const { fireMissile, getHighScore } = require('./firing');
 let trigger = false;
 
 // játékos input beolvasása
-const playerInput = (arr, enemies, player) => {
+const playerInput = (arr, enemies, player, getNumberOfEnemies) => {
   arr[arr.length - 2][(arr.length - 1) / 2 - 2] = player.tankIcon;
   player.posX = player.spawnPointX;
   player.posY = player.spawnPointY;
-  printMap(arr, getHighScore());
+  printMap(arr, getHighScore(), player, getNumberOfEnemies());
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.resume();
@@ -16,25 +16,25 @@ const playerInput = (arr, enemies, player) => {
     if (key === 'w') {
       playerMoveUp(arr, player);
       arr[player.posX][player.posY] = player.tankIcon;
-      printMap(arr, getHighScore());
+      printMap(arr, getHighScore(), player, getNumberOfEnemies());
     } else if (key === 's') {
       playerMoveDown(arr, player);
       arr[player.posX][player.posY] = player.tankIcon;
-      printMap(arr, getHighScore());
+      printMap(arr, getHighScore(), player, getNumberOfEnemies());
     } else if (key === 'a') {
       playerMoveLeft(arr, player);
       arr[player.posX][player.posY] = player.tankIcon;
-      printMap(arr, getHighScore());
+      printMap(arr, getHighScore(), player, getNumberOfEnemies());
     } else if (key === 'd') {
       playerMoveRight(arr, player);
       arr[player.posX][player.posY] = player.tankIcon;
-      printMap(arr, getHighScore());
+      printMap(arr, getHighScore(), player, getNumberOfEnemies());
     } else if (key === ' ') {
       if (trigger === false) {
         fireMissile(arr, emptyField, player, enemies, player);
         trigger = true;
         setTimeout(() => (trigger = false), 2000);
-        printMap(arr, getHighScore());
+        printMap(arr, getHighScore(), player, getNumberOfEnemies());
       }
     } else if (key === 'h') {
       process.exit();

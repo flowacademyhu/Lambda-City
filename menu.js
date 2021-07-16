@@ -66,15 +66,14 @@ const mainMenu = (menu) => {
         }
       });
     } else {
+      mplayer.stop();
+
       console.clear();
       process.exit();
     }
   });
 };
-if (process.exit) {
-  mplayer2.stop();
-  mplayer3.stop();
-}
+
 menuMusic();
 console.clear();
 title();

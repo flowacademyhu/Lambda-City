@@ -64,6 +64,9 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
       }
       if (arr[missilePosX][tank.missilePosY] !== emptyField) {
         if (arr[missilePosX][tank.missilePosY] !== 'F') {
+          if (arr[missilePosX][tank.missilePosY] === 'B') {
+            bricksSound();
+          }
           arr[missilePosX][tank.missilePosY] = emptyField;
         }
         clearInterval(interval);
@@ -123,6 +126,9 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
       }
       if (arr[missilePosX][tank.missilePosY] !== emptyField) {
         if (arr[missilePosX][tank.missilePosY] !== 'F') {
+          if (arr[missilePosX][tank.missilePosY] === 'B') {
+            bricksSound();
+          }
           arr[missilePosX][tank.missilePosY] = emptyField;
         }
         clearInterval(interval);
@@ -182,6 +188,9 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
       }
       if (arr[tank.missilePosX][missilePosY] !== emptyField) {
         if (arr[tank.missilePosX][missilePosY] !== 'F') {
+          if (arr[tank.missilePosX][missilePosY] === 'B') {
+            bricksSound();
+          }
           arr[tank.missilePosX][missilePosY] = emptyField;
         }
         clearInterval(interval);
@@ -241,6 +250,9 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
       }
       if (arr[tank.missilePosX][missilePosY] !== emptyField) {
         if (arr[tank.missilePosX][missilePosY] !== 'F') {
+          if (arr[tank.missilePosX][missilePosY] === 'B') {
+            bricksSound();
+          }
           arr[tank.missilePosX][missilePosY] = emptyField;
         }
         clearInterval(interval);

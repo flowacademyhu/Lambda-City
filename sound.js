@@ -40,11 +40,19 @@ const mainMusic = () => {
     .file('./main.mp3')
     .exec();
 };
+
+const menuMusic = () => {
+  mpg321()
+    .loop(1) // infinity loop
+    .file('./menu.mp3')
+    .exec();
+};
 module.exports = {
   fireSound,
   startSound,
   explosionSound,
   bricksSound,
   tankSound,
-  mainMusic
+  mainMusic,
+  menuMusic
 };

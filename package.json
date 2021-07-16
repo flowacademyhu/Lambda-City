@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/flowacademyhu/Lambda-City#readme",
   "dependencies": {
+    "cfonts": "^2.9.3",
     "fs": "^0.0.1-security",
-    "readline-sync": "^1.4.10"
+    "mpg321": "^0.1.5",
+    "readline-sync": "^1.4.10",
+    "table": "^6.7.1",
+    "terminal-kit": "^2.1.6"
   }
 }

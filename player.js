@@ -1,6 +1,10 @@
 const { printMap, emptyField } = require('./map');
 const { fireMissile, getHighScore } = require('./firing');
 const printColorMap = require('./colormap').printColorMap;
+const { fireSound, mplayer3 } = require('./sound');
+const mplayer2 = require('./sound').mplayer2;
+//const mplayer3 = require('./sound').mplayer3;
+
 let trigger = false;
 
 // játékos input beolvasása
@@ -34,6 +38,7 @@ const playerInput = (arr, enemies, player, getNumberOfEnemies) => {
     } else if (key === ' ') {
       if (trigger === false) {
         fireMissile(arr, emptyField, player, enemies, player);
+        fireSound();
         trigger = true;
         setTimeout(() => (trigger = false), 2000);
         printColorMap(
@@ -45,6 +50,8 @@ const playerInput = (arr, enemies, player, getNumberOfEnemies) => {
         );
       }
     } else if (key === 'h') {
+      mplayer2.stop();
+      mplayer3.stop();
       process.exit();
     }
   });

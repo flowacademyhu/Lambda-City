@@ -1,10 +1,15 @@
 const mpg321 = require('mpg321');
+const mplayer = mpg321().remote();
+const mplayer2 = mpg321().remote();
+const mplayer3 = mpg321().remote();
+
+const shoot = 'shoot.mp3';
+const menuSong = 'menu.mp3';
+const mainSong = 'main.mp3';
+const tankS = 'tank.mp3';
 
 const fireSound = () => {
-  mpg321()
-    .loop(1) // infinity loop
-    .file('./shoot.mp3')
-    .exec();
+  mplayer.play(shoot);
 };
 
 const startSound = () => {
@@ -28,24 +33,15 @@ const bricksSound = () => {
 };
 
 const tankSound = () => {
-  mpg321()
-    .loop(2) // infinity loop
-    .file('./tank.mp3')
-    .exec();
+  mplayer2.play(tankS);
 };
 
 const mainMusic = () => {
-  mpg321()
-    .loop(1) // infinity loop
-    .file('./main.mp3')
-    .exec();
+  mplayer3.play(mainSong);
 };
 
 const menuMusic = () => {
-  mpg321()
-    .loop(1) // infinity loop
-    .file('./menu.mp3')
-    .exec();
+  mplayer.play(menuSong);
 };
 module.exports = {
   fireSound,
@@ -54,5 +50,8 @@ module.exports = {
   bricksSound,
   tankSound,
   mainMusic,
-  menuMusic
+  menuMusic,
+  mplayer2,
+  mplayer3,
+  mplayer
 };

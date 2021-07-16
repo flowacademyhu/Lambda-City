@@ -1,4 +1,8 @@
 const printColorMap = require('./colormap').printColorMap;
+const fireSound = require('./sound').fireSound;
+const explosionSound = require('./sound').explosionSound;
+const bricksSound = require('./sound').bricksSound;
+
 let highScore = 0;
 
 const getHighScore = () => {
@@ -33,6 +37,8 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
       ) {
         if (found && tank.isPlayer) {
           found.status = 'dead';
+          explosionSound();
+
           highScore++;
           arr[missilePosX][tank.missilePosY] = emptyField;
         }
@@ -87,6 +93,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
       ) {
         if (found && tank.isPlayer) {
           found.status = 'dead';
+          explosionSound();
           highScore++;
           arr[missilePosX][tank.missilePosY] = emptyField;
         }
@@ -140,6 +147,8 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
       ) {
         if (found && tank.isPlayer) {
           found.status = 'dead';
+          explosionSound();
+
           highScore++;
           arr[tank.missilePosX][missilePosY] = emptyField;
         }
@@ -193,6 +202,8 @@ const fireMissile = (arr, emptyField, tank, enemies, player, totalEnemies) => {
       ) {
         if (found && tank.isPlayer) {
           found.status = 'dead';
+          explosionSound();
+
           highScore++;
           arr[tank.missilePosX][missilePosY] = emptyField;
         }

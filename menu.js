@@ -1,7 +1,9 @@
 const term = require('terminal-kit').terminal;
 const cfonts = require('cfonts');
 const fs = require('fs');
+const mainMusic = require('./sound').mainMusic;
 const menuMusic = require('./sound').menuMusic;
+const mplayer = require('./sound').mplayer;
 
 const title = () => {
   cfonts.say('Lambda|City', {
@@ -30,10 +32,10 @@ const menu = [
 ];
 
 const mainMenu = (menu) => {
-  menuMusic();
   term.singleColumnMenu(menu, function (error, response) {
     response.selectedIndex;
     if (response.selectedIndex === 0) {
+      mplayer.stop();
       const main = require('./main');
     } else if (response.selectedIndex === 1) {
       console.clear();
@@ -68,6 +70,7 @@ const mainMenu = (menu) => {
   });
 };
 
+menuMusic();
 console.clear();
 title();
 mainMenu(menu);

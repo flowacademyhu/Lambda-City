@@ -1,6 +1,9 @@
 const { generateMap } = require('./map');
 const { playerInput } = require('./player');
 const printColorMap = require('./colormap').printColorMap;
+const mainMusic = require('./sound').mainMusic;
+const tankSound = require('./sound').tankSound;
+const mplayer3 = require('./sound').mplayer3;
 
 const {
   spawnAllEnemies,
@@ -81,6 +84,7 @@ const main = () => {
     }
   }, 500);
 };
+tankSound();
+mainMusic();
 main();
-
 module.exports = { enemies };

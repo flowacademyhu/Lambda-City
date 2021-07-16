@@ -1,7 +1,12 @@
 const { printMap, generateMap } = require('./map');
 const { playerInput } = require('./player');
 
-const { spawnAllEnemies, enemySpawn, enemyMotion } = require('./enemy');
+const {
+  spawnAllEnemies,
+  enemySpawn,
+  enemyMotion,
+  getHighScore
+} = require('./enemy');
 const map = generateMap(15, 15);
 
 const player = {
@@ -70,7 +75,7 @@ const main = () => {
       } else if (enemy.status === 'dead') {
         enemySpawn(map, enemy);
       }
-      printMap(map);
+      printMap(map, getHighScore());
     }
   }, 500);
 };

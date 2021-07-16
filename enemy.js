@@ -1,5 +1,5 @@
 const emptyField = require('./map').emptyField;
-const { fireMissile } = require('./firing');
+const { fireMissile, getHighScore } = require('./firing');
 
 const spawnAllEnemies = (arr, enemies) => {
   for (const enemy of enemies) {
@@ -7,12 +7,23 @@ const spawnAllEnemies = (arr, enemies) => {
   }
 };
 
+let numOfEnemies = 0;
+
 // ellenfél lehelyezése a pályára
 const enemySpawn = (arr, enemy) => {
   arr[enemy.spawnPointX][enemy.spawnPointY] = enemy.tankIcon;
   enemy.posX = enemy.spawnPointX;
   enemy.posY = enemy.spawnPointY;
   enemy.status = 'spawned';
+  numOfEnemies++;
+  if (numOfEnemies === 10) {
+    console.log('YOU WIN');
+    process.exit();
+  }
+};
+
+const getNumOfEnemies = () => {
+  return numOfEnemies;
 };
 
 // ellenfél mozgása
@@ -159,7 +170,9 @@ const checkPlayer = (arr, enemy, player) => {
 };
 
 module.exports = {
+  getNumOfEnemies,
   enemySpawn,
   enemyMotion,
-  spawnAllEnemies
+  spawnAllEnemies,
+  getHighScore
 };

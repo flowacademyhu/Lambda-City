@@ -1,9 +1,10 @@
 const table = require('table');
+// const { getNumOfEnemies } = require('./enemy');
 const emptyField = '';
 
 // játéktér generálása
 const generateMap = (width, height) => {
-  // console.clear();
+  console.clear();
   const arr = new Array(height);
   const PosEagle = (arr.length - 1) / 2;
   for (let posX = 0; posX < arr.length; posX++) {
@@ -35,9 +36,10 @@ const generateMap = (width, height) => {
 };
 
 // pálya kirajzoltatása
-const printMap = (map) => {
-  // console.clear(map);
+const printMap = (map, score) => {
+  console.clear(map);
   console.log(table.table(map));
+  console.log('Score:', score);
 };
 
 module.exports = {

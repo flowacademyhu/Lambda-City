@@ -1,4 +1,11 @@
 const { printMap } = require('./map');
+
+let highScore = 0;
+
+const getHighScore = () => {
+  return highScore;
+};
+
 // lövés folyamata
 const fireMissile = (arr, emptyField, tank, enemies, player) => {
   tank.missilePosX = tank.posX;
@@ -13,6 +20,12 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
       if (arr[missilePosX + 1][tank.missilePosY] !== tank.tankIcon) {
         arr[missilePosX + 1][tank.missilePosY] = emptyField;
       }
+      // eagle gets shot
+      if (arr[missilePosX][tank.missilePosY] === 'E') {
+        console.log('GAME OVER');
+        process.exit();
+      }
+      // eagle gets shot
       if (
         arr[missilePosX][tank.missilePosY] === '^' ||
         arr[missilePosX][tank.missilePosY] === 'v' ||
@@ -21,13 +34,11 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
       ) {
         if (found && tank.isPlayer) {
           found.status = 'dead';
+          highScore++;
           arr[missilePosX][tank.missilePosY] = emptyField;
         }
         // player gets shot
-        if (
-          player.posX === missilePosX &&
-          player.posY === tank.missilePosY
-        ) {
+        if (player.posX === missilePosX && player.posY === tank.missilePosY) {
           player.life--;
           arr[missilePosX][tank.missilePosY] = emptyField;
           player.posX = player.spawnPointX;
@@ -49,7 +60,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
         arr[missilePosX][tank.missilePosY] = tank.missileIcon;
       }
       missilePosX--;
-      printMap(arr);
+      printMap(arr, highScore);
     }, 60);
   }
 
@@ -62,6 +73,12 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
       if (arr[missilePosX - 1][tank.missilePosY] !== tank.tankIcon) {
         arr[missilePosX - 1][tank.missilePosY] = emptyField;
       }
+      // eagle gets shot
+      if (arr[missilePosX][tank.missilePosY] === 'E') {
+        console.log('GAME OVER');
+        process.exit();
+      }
+      // eagle gets shot
       if (
         arr[missilePosX][tank.missilePosY] === '^' ||
         arr[missilePosX][tank.missilePosY] === 'v' ||
@@ -70,6 +87,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
       ) {
         if (found && tank.isPlayer) {
           found.status = 'dead';
+          highScore++;
           arr[missilePosX][tank.missilePosY] = emptyField;
         }
         // player gets shot
@@ -95,7 +113,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
         arr[missilePosX][tank.missilePosY] = tank.missileIcon;
       }
       missilePosX++;
-      printMap(arr);
+      printMap(arr, highScore);
     }, 60);
   }
 
@@ -108,6 +126,12 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
       if (arr[tank.missilePosX][missilePosY + 1] !== tank.tankIcon) {
         arr[tank.missilePosX][missilePosY + 1] = emptyField;
       }
+      // eagle gets shot
+      if (arr[tank.missilePosX][missilePosY] === 'E') {
+        console.log('GAME OVER');
+        process.exit();
+      }
+      // eagle gets shot
       if (
         arr[tank.missilePosX][missilePosY] === '^' ||
         arr[tank.missilePosX][missilePosY] === 'v' ||
@@ -116,13 +140,11 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
       ) {
         if (found && tank.isPlayer) {
           found.status = 'dead';
+          highScore++;
           arr[tank.missilePosX][missilePosY] = emptyField;
         }
         // player gets shot
-        if (
-          player.posX === tank.missilePosX &&
-          player.posY === missilePosY
-        ) {
+        if (player.posX === tank.missilePosX && player.posY === missilePosY) {
           player.life--;
           arr[tank.missilePosX][missilePosY] = emptyField;
           player.posX = player.spawnPointX;
@@ -144,7 +166,7 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
         arr[tank.missilePosX][missilePosY] = tank.missileIcon;
       }
       missilePosY--;
-      printMap(arr);
+      printMap(arr, highScore);
     }, 60);
   }
 
@@ -157,6 +179,12 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
       if (arr[tank.missilePosX][missilePosY - 1] !== tank.tankIcon) {
         arr[tank.missilePosX][missilePosY - 1] = emptyField;
       }
+      // eagle gets shot
+      if (arr[tank.missilePosX][missilePosY] === 'E') {
+        console.log('GAME OVER');
+        process.exit();
+      }
+      // eagle gets shot
       if (
         arr[tank.missilePosX][missilePosY] === '^' ||
         arr[tank.missilePosX][missilePosY] === 'v' ||
@@ -165,13 +193,11 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
       ) {
         if (found && tank.isPlayer) {
           found.status = 'dead';
+          highScore++;
           arr[tank.missilePosX][missilePosY] = emptyField;
         }
         // player gets shot
-        if (
-          player.posX === tank.missilePosX &&
-          player.posY === missilePosY
-        ) {
+        if (player.posX === tank.missilePosX && player.posY === missilePosY) {
           player.life--;
           arr[tank.missilePosX][missilePosY] = emptyField;
           player.posX = player.spawnPointX;
@@ -193,10 +219,11 @@ const fireMissile = (arr, emptyField, tank, enemies, player) => {
         arr[tank.missilePosX][missilePosY] = tank.missileIcon;
       }
       missilePosY++;
-      printMap(arr);
+      printMap(arr, highScore);
     }, 60);
   }
 };
 module.exports = {
-  fireMissile
+  fireMissile,
+  getHighScore
 };
